@@ -49,7 +49,7 @@ const handleNextClick = () => {
   {restaurants.length > 0 && (
     <div key={restaurants[index].id} className='relative'>
       <div className='relative'>
-        <img className='lg:h-80 lg:w-[75rem] rounded-md' src={restaurants[index].image} alt="not found" />
+        <img className='lg:h-80 lg:w-[75rem] h-52 w-72 rounded-md' src={restaurants[index].image} alt="not found" />
         <div className='absolute top-0 left-0 right-0 bottom-0 flex items-center justify-center'>
           <div className='text-white text-5xl font-bold'>{restaurants[index].name}</div>
         </div>

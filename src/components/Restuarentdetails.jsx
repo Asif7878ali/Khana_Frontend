@@ -28,7 +28,7 @@ const Restuarentdetails = () => {
         
   return (
     <>
-      <div className="relative mt-5 flex ml-72 w-full max-w-[68rem] flex-row bg-gray-100 bg-clip-border text-gray-700 shadow-md">
+      <div className="relative mt-5 flex lg:ml-72 w-full max-w-[68rem] flex-row bg-gray-100 bg-clip-border text-gray-700 shadow-md">
         <div className="relative w-2/5  overflow-hidden text-gray-700 bg-gray-100 rounded-r-none shrink-0 bg-clip-border">
           <img
             src={image}
@@ -36,7 +36,7 @@ const Restuarentdetails = () => {
             className="object-cover w-full h-full"
           />
         </div>
-        <div className="p-6">
+        <div className="lg:p-6">
           <h6 className="block mb-4 font-sans text-2xl antialiased font-semibold leading-relaxed tracking-normal text-pink-500 uppercase">
             Name : {name}
           </h6>

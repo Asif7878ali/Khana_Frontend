@@ -13,7 +13,7 @@ const Menu = ({ foodItems }) => {
   };
   return (
     <>
-      <div className="ml-5 mt-3 mb-3 max-w-sm h-80 lg:w-60 rounded overflow-hidden shadow-lg">
+      <div className="lg:ml-5 mt-3 mb-3 max-w-sm h-80 lg:w-60 rounded overflow-hidden shadow-lg">
         <img className="w-60 h-36" src={image} alt="Sunset in the mountains" />
         <div className="px-6 pb-2 pt-2 text-2xl font-bold text-center">
           {name}
