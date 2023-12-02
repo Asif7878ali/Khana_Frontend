@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {useEffect, useState} from 'react'
+import {useEffect, useState, useCallback} from 'react'
 
 
 const  CarouselTransition = () => {
@@ -25,9 +25,9 @@ const handlePrevClick = () => {
   setIndex(prevIndex => (prevIndex > 0 ? prevIndex - 1 : restaurants.length - 1));
 };
 
-const handleNextClick = () => {
-  setIndex(prevIndex => (prevIndex < restaurants.length - 1 ? prevIndex + 1 : 0));
-};
+const handleNextClick = useCallback(() => {
+  setIndex((prevIndex) => (prevIndex < restaurants.length - 1 ? prevIndex + 1 : 0));
+}, [restaurants.length]);
 
   useEffect(()=>{
          const timer = setTimeout(() => {
@@ -37,7 +37,7 @@ const handleNextClick = () => {
          return () =>{
               clearTimeout(timer)
          }
-  },[index])
+  },[index, handleNextClick])
 
   return (
       <>
