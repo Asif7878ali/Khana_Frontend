@@ -39,7 +39,7 @@ const LogIn = () => {
                 action.resetForm();
                 console.log('React Data', values)
                           //Send Data to NodeJs
-                const userLoginInfo = 'https://calm-pink-cricket-hose.cyclic.app/loginInfo'
+                const userLoginInfo = 'http://localhost:5000/loginInfo'
                   const userResult = await fetch(userLoginInfo,{
                        method : 'POST',
                        body: JSON.stringify(values),

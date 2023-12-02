@@ -1,25 +1,25 @@
-import React from 'react'
 import { Link } from 'react-router-dom'
-import { useSelector } from "react-redux"
 
 const About = () => {
 
-  const email = useSelector((store)=> store.loginDetail.email)
-  const isUserLogin = email
+  const token = localStorage.getItem('Token');
+  const isLogin = JSON.parse(token);
+
+  
   return (
     <>
-     { isUserLogin ? (
-            <div className="flex flex-col bg-gray-800 items-center justify-start font-sans min-h-96 lg:pt-10 lg:pb-20 lg:bg-hero lg:bg-cover">
+     { isLogin ? (
+            <div className="flex flex-col bg-yellow-200 items-center justify-start font-sans min-h-96 lg:pt-10 lg:pb-20 lg:bg-hero lg:bg-cover">
             <div>
-              <p className="p-3 pt-12 text-3xl font-bold text-gray-500 lg:text-gray-300">Khana-Khazana</p>
+              <p className="p-3 pt-12 text-3xl font-bold">Khana-Khazana</p>
             </div>
             <div>
-              <p className="p-2 text-2xl font-bold text-center text-blue-800 lg:mx-auto lg:w-4/6 lg:text-5xl lg:text-gray-100">
+              <p className="p-2 text-2xl font-bold text-center text-blue-800 lg:mx-auto lg:w-4/6 lg:text-5xl">
               Why stay hungry when you can order from Khana-Khazana
               </p>
             </div>
             <div>
-              <p className="p-4 pt-6 font-sans text-2xl leading-10 text-center text-gray-500 lg:text-gray-200">
+              <p className="p-4 pt-6 font-bold text-2xl leading-10 text-center">
               Download the Khana-Khazana food app now on
               </p>
             </div>

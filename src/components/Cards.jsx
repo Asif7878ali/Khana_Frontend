@@ -7,11 +7,12 @@ const Cards = ({restuarent}) => {
   const isLogin = JSON.parse(token);
 
    //Destruction restuarent in name, image, Description , rating
-      const { name, Despription, rating, image} = restuarent
+      const { name, Despription, rating, image } = restuarent
      
   return (
     <>
       { isLogin ? (
+             
               <div className="w-64 mt-5 mb-10 mr-5 ml-[1.6rem] bg-gray-100 shadow-md rounded-md overflow-hidden">
               <img src={image} alt="" className="w-full h-40 object-cover"/>
               <div className="p-4">
@@ -20,12 +21,13 @@ const Cards = ({restuarent}) => {
                 <p className="text-gray-600 font-bold">Rating:- {rating}</p>
               </div>
             </div>
-      ) :(
+            
+      ) : (
         <div className="min-h-screen bg-yellow-400 flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-3xl font-semibold mb-4">Please Login</h1>
+               <div className="text-center">
+                    <h1 className="text-3xl font-semibold mb-4">Please Login</h1>
+               </div>
         </div>
-      </div>
       )}
      
    

@@ -44,7 +44,7 @@ const SignIn = () => {
                 console.log('React Data', values)
                               
                               // Send Data to Nodejs
-                const registerUser = 'https://calm-pink-cricket-hose.cyclic.app/registerUsers'
+                const registerUser = 'http://localhost:5000/registerUsers'
                   const userResult = await fetch(registerUser,{
                        method : 'POST',
                        body: JSON.stringify(values),

@@ -1,23 +1,41 @@
-import {useState} from 'react'
-import { KhanaKhazanaApi } from './data.js';
+import {useEffect, useState} from 'react'
 import Cards from './Cards.jsx';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+import CarouselTransition from './CarouselTransition.jsx';
+
 
 const Restuerenttems = () => {
-    const [res] = useState(KhanaKhazanaApi.restaurants)
+   
+    const [restaurants, setRestaurants] = useState([]);
     
     const token = localStorage.getItem('Token');
     const isLogin = JSON.parse(token);
- 
+    
+    useEffect( ()=>{
+      const fetchData =async ()=>{
+      const myApiData = 'https://restuarent-list.onrender.com/restaurants'
+            try {
+               const responce = await axios.get(myApiData)
+               setRestaurants(responce.data)
+            } catch (error) {
+             console.error('Error fetching data:', error);
+            } 
+     }
+   fetchData()      
+},[])
   
   return (
     <>
-
+     
      { isLogin ? (
-        <div className='flex flex-wrap'>
-        {res?.map((resturentitem, index) => {
-          return <Link to={'/restuarent/' + index}> <Cards key={index} restuarent={resturentitem}/> </Link>
-          })}
+        <div>
+            <CarouselTransition/>
+             <div className='flex flex-wrap'>
+                {restaurants?.map((resturentitem) => {
+                   return  <Link to={'/restuarent/' + resturentitem.id} key={resturentitem.id}> <Cards key={resturentitem.id} restuarent={resturentitem}/>  </Link>
+               })}
+             </div>
       </div>
       ) : (
         <div className="min-h-screen bg-red-600 flex items-center justify-center">

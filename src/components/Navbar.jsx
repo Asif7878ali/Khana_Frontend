@@ -15,7 +15,7 @@ const Navbar = () => {
   
   return (
     <>
-      <nav className="bg-gray-800 p-4">
+      <nav className="bg-yellow-200 p-4">
       <div className="container mx-auto flex items-center justify-between">
           <div className="text-red-700 font-extrabold text-2xl flex items-center cursor-pointer">
             Khana-Khazana
@@ -26,16 +26,16 @@ const Navbar = () => {
           <div className="mx-auto flex items-center justify-between space-x-3">
               <div className="hidden md:flex space-x-4 cursor-pointer">
                 <Link to="/restuarent">
-                  <p className="text-white hover:text-gray-300">Home</p>
+                  <p className="hover:text-gray-300 font-bold">Home</p>
                 </Link>
                 <Link to="/about">
-                  <p className="text-white hover:text-gray-300">About</p>
+                  <p className="font-bold hover:text-gray-300">About</p>
                 </Link>
                 <Link to="/contact">
-                  <p className="text-white hover:text-gray-300">Contact</p>
+                  <p className="font-bold hover:text-gray-300">Contact</p>
                 </Link>
                 <Link to="/card">
-                  <p className="text-white hover:text-gray-300">
+                  <p className="font-bold hover:text-gray-300">
                     Card: {carditems?.length}
                   </p>
                 </Link>
@@ -71,7 +71,7 @@ const Navbar = () => {
               </div>
 
               <div className="flex">
-                <div className="text-white">
+                <div className="font-bold">
                   <div className="flex space-x-1">
                     <p className="pl-9">{users?.first_name}</p>
                     <p>{users?.last_name}</p>
@@ -84,7 +84,7 @@ const Navbar = () => {
                           localStorage.removeItem('Token')
                   } }
 
-                    className="bg-yellow-300 hover:bg-yellow-500 text-white font-bold md:ml-10 mt-1 px-2 py-2 rounded-md"
+                    className="bg-gradient-to-r from-yellow-100 via-yellow-400 to-yellow-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center ml-7 mb-1"
                   >
                     Logout
                   </button>
