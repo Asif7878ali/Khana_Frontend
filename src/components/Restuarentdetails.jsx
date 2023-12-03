@@ -1,31 +1,37 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import axios from 'axios';
+import axios from "axios";
 import Menu from "./Menu";
 
-
 const Restuarentdetails = () => {
-
   const { id } = useParams();
   const [data, setData] = useState([]);
-   
+
   useEffect(() => {
-    const fetchData =async ()=>{
+    const fetchData = async () => {
       const myApiData = `https://restuarent-list.onrender.com/restaurants/${id}`;
       try {
-        const responce = await axios.get(myApiData)
-        setData(responce.data)
-     } catch (error) {
-      console.error('Error fetching data:', error);
-     } 
-  }
-      fetchData() 
-   }, [id]);
-  console.log(data)
-  const { image, name, rating, Despription ,deliveryCharge ,cuisine , location } = data  
+        const responce = await axios.get(myApiData);
+        setData(responce.data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+    fetchData();
+  }, [id]);
+  console.log(data);
+  const {
+    image,
+    name,
+    rating,
+    Despription,
+    deliveryCharge,
+    cuisine,
+    location,
+  } = data;
 
-  const foodItems = data.foodItems
-        
+  const foodItems = data.foodItems;
+
   return (
     <>
       <div className="relative mt-5 flex lg:ml-72 w-full max-w-[68rem] flex-row bg-gray-100 bg-clip-border text-gray-700 shadow-md">
@@ -59,14 +65,11 @@ const Restuarentdetails = () => {
         </div>
       </div>
 
-      
-      <div className='flex flex-wrap ml-32'>
+      <div className="flex flex-wrap ml-32">
         {foodItems?.map((items) => {
-          return  <Menu key={items.id} foodItems={items}/>
-          
-         })}
+          return <Menu key={items.id} foodItems={items} />;
+        })}
       </div>
-        
     </>
   );
 };

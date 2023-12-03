@@ -7,16 +7,16 @@ import store from './Store.js';
 
 function App() {
 
-  
+
   return (
     <>
       <Provider store={store}>
-         
-              <Navbar />         
-              <Outlet/>
-              <Footer />
 
-      </Provider> 
+        <Navbar />
+        <Outlet />
+        <Footer />
+
+      </Provider>
     </>
   );
 }

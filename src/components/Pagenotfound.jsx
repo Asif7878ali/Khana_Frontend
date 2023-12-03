@@ -1,6 +1,6 @@
 import React from "react";
 import { useRouteError } from "react-router-dom";
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
 
 const Pagenotfound = () => {
   const err = useRouteError();
@@ -21,10 +21,12 @@ const Pagenotfound = () => {
                 <p className="mb-8 text-lg text-blue-700">
                   The page you are looking for it maybe deleted
                 </p>
-                <Link to="/"> <button className="inline-block px-8 py-3 text-base font-semibold text-center bg-blue-500 text-white transition border border-white rounded-lg hover:bg-blue-700 hover:text-primary">
-                  Go to Home
-                </button></Link>
-               
+                <Link to="/">
+                  {" "}
+                  <button className="inline-block px-8 py-3 text-base font-semibold text-center bg-blue-500 text-white transition border border-white rounded-lg hover:bg-blue-700 hover:text-primary">
+                    Go to Home
+                  </button>
+                </Link>
               </div>
             </div>
           </div>

@@ -16,51 +16,50 @@ import ForgetPassword from './components/ForgetPassword';
 
 const appRouting = createBrowserRouter([
   {
-    path : "/",
-    element: <App/>,
-    errorElement: <Pagenotfound/>,
-    children:[
+    path: "/",
+    element: <App />,
+    errorElement: <Pagenotfound />,
+    children: [
       {
-        path : "/",
-        element: <SignIn/>
+        path: "/",
+        element: <SignIn />
       },
       {
-        path : "/login",
-        element: <LogIn/>
+        path: "/login",
+        element: <LogIn />
       },
       {
-        path : "/restuarent",
-        element: <Restuerenttems/>
+        path: "/restuarent",
+        element: <Restuerenttems />
       },
       {
-        path : "/about",
-        element: <About/>
+        path: "/about",
+        element: <About />
       },
       {
-        path : "/contact",
-        element: <Contact/>
+        path: "/contact",
+        element: <Contact />
       },
-       
+
       {
-        path : "/card",
-        element: <Fooditems/>
-      },
-      {
-        path : "/restuarent/:id",
-        element: <Restuarentdetails/>
+        path: "/card",
+        element: <Fooditems />
       },
       {
-        path : "/forgetPassword",
-        element : <ForgetPassword/>
+        path: "/restuarent/:id",
+        element: <Restuarentdetails />
+      },
+      {
+        path: "/forgetPassword",
+        element: <ForgetPassword />
       }
     ]
   },
-  
+
 ])
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-root.render( <RouterProvider router={appRouting}/> );
+root.render(<RouterProvider router={appRouting} />);
 
 
- 

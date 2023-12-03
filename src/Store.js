@@ -4,11 +4,11 @@ import LoginDetailsSlice from "./components/LoginDetailsSlice";
 
 
 const store = configureStore({
-      reducer: {
-        fooditemsCard : FoodcardSlice,
-        loginDetail: LoginDetailsSlice,
-      }
-      
+  reducer: {
+    fooditemsCard: FoodcardSlice,
+    loginDetail: LoginDetailsSlice,
+  }
+
 })
 
 export default store;
