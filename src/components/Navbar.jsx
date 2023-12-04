@@ -82,7 +82,7 @@ const Navbar = () => {
             </div>
 
             <div className={`navbar-menu ${isMenuOpen ? "block" : "hidden"}`}>
-              <nav className="fixed top-0 left-0 bottom-0 flex flex-col w-5/6 max-w-sm py-6 px-6 bg-yellow-200 border-r overflow-y-auto">
+              <nav className="fixed top-0 left-0 bottom-0 flex flex-col w-5/6 max-w-sm py-6 px-6 bg-yellow-200 border-r overflow-y-auto z-50">
                 <div className="flex items-center mb-8">
                   <h1 className="mr-auto text-3xl text-red-500 font-bold leading-none">
                     Khana-Kazana

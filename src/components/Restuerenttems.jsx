@@ -12,7 +12,7 @@ const Restuerenttems = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const myApiData = "https://restuarent-list.onrender.com/restaurants";
+      const myApiData = "https://restuarent-list.onrender.com/restaurants?_limit=5";
       try {
         const responce = await axios.get(myApiData);
         setRestaurants(responce.data);
