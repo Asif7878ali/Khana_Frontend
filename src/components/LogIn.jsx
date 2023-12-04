@@ -45,7 +45,7 @@ const LogIn = () => {
         action.resetForm();
         console.log("React Data", values);
         //Send Data to NodeJs
-        const userLoginInfo = "http://localhost:5000/loginInfo";
+        const userLoginInfo = "https://gifted-cap-cod.cyclic.app/loginInfo";
         const userResult = await fetch(userLoginInfo, {
           method: "POST",
           body: JSON.stringify(values),
