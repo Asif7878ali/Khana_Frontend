@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { RiEyeFill, RiEyeOffFill } from "react-icons/ri";
 import { useDispatch } from "react-redux";
 import { addLoginUsers } from "./LoginDetailsSlice";
+import axios from "axios";
 
 const LogIn = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -36,6 +37,10 @@ const LogIn = () => {
       .required("Please Enter Valid Password"),
   });
 
+  const visibilityPassword = () => {
+    setShowPassword(!showPassword);
+  };
+
   //Submit Form
   const { values, touched, errors, handleBlur, handleChange, handleSubmit } =
     useFormik({
@@ -45,37 +50,33 @@ const LogIn = () => {
         action.resetForm();
         console.log("React Data", values);
         //Send Data to NodeJs
-        const userLoginInfo = "https://gifted-cap-cod.cyclic.app/loginInfo";
-        const userResult = await fetch(userLoginInfo, {
-          method: "POST",
-          body: JSON.stringify(values),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-        const responce = await userResult.json();
-        console.log("Node Responce", responce);
-        const { token, data } = responce;
-        console.log(token);
-        if (responce.message === "Invalid email/password") {
-          notification.error({
-            message: responce.message,
-          });
-        } else {
+        //"https://gifted-cap-cod.cyclic.app/loginInfo"
+        //"http://localhost:5000/loginInfo"
+        try {
+          const userLoginInfo = "https://gifted-cap-cod.cyclic.app/loginInfo";
+          const responce = await axios.post(userLoginInfo, values);
+          console.log("Node Responce", responce.data);
+          const { token, data, message } = responce.data;
+
+          console.log(message)
+
           notification.success({
-            message: responce.message,
+            message: message,
           });
           dispatch(addLoginUsers(data));
           localStorage.setItem("Token", JSON.stringify(token));
 
           navigate("/restuarent");
+        } catch (error) {
+          console.warn("Error during fetch:", error);
+          const {message} = error.response.data
+         
+          notification.error({
+            message: message,
+          });
         }
       },
     });
-
-  const visibilityPassword = () => {
-    setShowPassword(!showPassword);
-  };
 
   return (
     <>

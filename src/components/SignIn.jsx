@@ -4,6 +4,7 @@ import * as Yup from "yup";
 import { notification } from "antd";
 import { RiEyeFill, RiEyeOffFill } from "react-icons/ri";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const SignIn = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -43,6 +44,13 @@ const SignIn = () => {
       .oneOf([Yup.ref("password"), null], "Password Must Match"),
   });
 
+  const visibilityPassword = () => {
+    setShowPassword(!showPassword);
+  };
+  const visibilityConfirmPassword = () => {
+    setConfirmShowPassword(!confirmShowPassword);
+  };
+
   //Submit Form
   const { values, touched, errors, handleBlur, handleChange, handleSubmit } =
     useFormik({
@@ -51,37 +59,31 @@ const SignIn = () => {
       onSubmit: async (values, action) => {
         action.resetForm();
         console.log("React Data", values);
-
         // Send Data to Nodejs
-        const registerUser = "https://gifted-cap-cod.cyclic.app/registerUsers";
-        const userResult = await fetch(registerUser, {
-          method: "POST",
-          body: JSON.stringify(values),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-        const responce = await userResult.json();
-        console.log("Node Responce", responce);
-        if (responce.message === "User already exits") {
-          notification.error({
-            message: responce.message,
-          });
-        } else {
+        //"http://localhost:5000/registerUsers"
+        //"https://gifted-cap-cod.cyclic.app/registerUsers"
+        try {
+          const registerUser = "https://gifted-cap-cod.cyclic.app/registerUsers";
+          const responce = await axios.post(registerUser, values);
+          console.log("Node Responce", responce);
+
+          const { message } = responce.data;
+
           notification.success({
-            message: responce.message,
+            message: message,
           });
           navigate("/login");
+        } catch (error) {
+          console.warn("Error during fetch:", error);
+          const { message } = error.response.data;
+          console.log(message);
+          notification.error({
+            message: message,
+          });
         }
       },
     });
 
-  const visibilityPassword = () => {
-    setShowPassword(!showPassword);
-  };
-  const visibilityConfirmPassword = () => {
-    setConfirmShowPassword(!confirmShowPassword);
-  };
   return (
     <>
       <div className="w-full bg-grey-lightest mt-2">
