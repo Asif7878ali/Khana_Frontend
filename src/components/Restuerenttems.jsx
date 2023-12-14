@@ -28,7 +28,7 @@ const Restuerenttems = () => {
       {isLogin ? (
         <div>
           <CarouselTransition />
-          <div className="flex flex-wrap">
+          <div className="lg:flex lg:ml-32 ml-14">
             {restaurants?.map((resturentitem) => {
               return (
                 <Link

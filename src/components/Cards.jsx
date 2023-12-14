@@ -11,7 +11,7 @@ const Cards = ({ restuarent }) => {
   return (
     <>
       {isLogin ? (
-        <div className="w-64 mt-5 mb-10 mr-5 ml-[1.6rem] bg-gray-100 shadow-md rounded-md overflow-hidden">
+        <div className="w-64 mt-5 mb-10 lg:mr-10 bg-gray-100 shadow-md rounded-md overflow-hidden">
           <img src={image} alt="" className="w-full h-40 object-cover" />
           <div className="p-4">
             <h1 className="text-2xl font-bold mb-2">{name}</h1>

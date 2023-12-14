@@ -20,14 +20,8 @@ const Menu = ({ foodItems }) => {
         </div>
         <h3 className="py-2 font-bold pl-4">{price}$</h3>
         <div className="flex pl-6 space-x-5">
-          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full transform hover:scale-105 transition-transform duration-300">
+          <button onClick={() => handlecarddata(foodItems)}  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full transform hover:scale-105 transition-transform duration-300">
             Order
-          </button>
-          <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full transform hover:scale-105 transition-transform duration-300"
-            onClick={() => handlecarddata(foodItems)}
-          >
-            Add
           </button>
         </div>
       </div>
