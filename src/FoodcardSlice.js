@@ -10,9 +10,13 @@ const FoodcardSlice = createSlice({
     reducers: {
         additems: (state, action) => {
             state.items.push(action.payload)
+        },
+
+        clearItems : (state) => {
+            state.items = null
         }
     }
 })
 
-export const { additems } = FoodcardSlice.actions
+export const { additems , clearItems } = FoodcardSlice.actions
 export default FoodcardSlice.reducer;

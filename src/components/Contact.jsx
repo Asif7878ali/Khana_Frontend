@@ -4,7 +4,8 @@ import * as Yup from "yup";
 import { notification } from "antd";
 
 const Contact = () => {
-  const token = localStorage.getItem("Token");
+  const token = sessionStorage.getItem('Token')
+  // const token = localStorage.getItem("Token");
   const isLogin = JSON.parse(token);
 
   // setInitialState

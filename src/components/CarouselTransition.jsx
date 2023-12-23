@@ -2,8 +2,23 @@ import axios from "axios";
 import { useEffect, useState, useCallback } from "react";
 
 const CarouselTransition = () => {
-  const [index, setIndex] = useState(0);
+ 
   const [restaurants, setRestaurants] = useState([]);
+  const [activeItem, setActiveItem] = useState(0);
+
+ 
+
+  const handlePrevClick = () => {
+    setActiveItem((prevItem) =>
+      prevItem === 0 ? restaurants.length - 1 : prevItem - 1
+    );
+  };
+
+  const handleNextClick = useCallback(() => {
+    setActiveItem((prevItem) =>
+      prevItem === restaurants.length - 1 ? 0 : prevItem + 1
+    );
+  }, [restaurants.length]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -16,22 +31,7 @@ const CarouselTransition = () => {
         console.error("Error fetching data:", error);
       }
     };
-    fetchData();
-  }, []);
-
-  const handlePrevClick = () => {
-    setIndex((prevIndex) =>
-      prevIndex > 0 ? prevIndex - 1 : restaurants.length - 1
-    );
-  };
-
-  const handleNextClick = useCallback(() => {
-    setIndex((prevIndex) =>
-      prevIndex < restaurants.length - 1 ? prevIndex + 1 : 0
-    );
-  }, [restaurants.length]);
-
-  useEffect(() => {
+    fetchData()
     const timer = setTimeout(() => {
       handleNextClick();
     }, 3000);
@@ -39,46 +39,32 @@ const CarouselTransition = () => {
     return () => {
       clearTimeout(timer);
     };
-  }, [index, handleNextClick]);
+  }, [activeItem, handleNextClick]);
+
+
 
   return (
     <>
-      <div className="flex justify-center mt-6 relative">
-        <div className="mr-10 mt-36">
-          <button
-            onClick={handlePrevClick}
-            className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
-          >
-            &lt;
-          </button>
-        </div>
-        {restaurants.length > 0 && (
-          <div key={restaurants[index].id} className="relative">
-            <div className="relative">
-              <img
-                className="lg:h-80 lg:w-[75rem] h-52 w-72 rounded-md"
-                src={restaurants[index].image}
-                alt="not found"
-              />
-              <div className="absolute top-0 left-0 right-0 bottom-0 flex items-center justify-center">
-                <div className="text-white text-5xl font-bold">
-                  {restaurants[index].name}
-                </div>
-              </div>
-              <div className="absolute top-0 left-0 right-0 bottom-0 blur-md"></div>
-            </div>
-          </div>
-        )}
-        <div className="ml-10 mt-36">
-          <button
-            onClick={handleNextClick}
-            className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
-          >
-            {" "}
-            &gt;
-          </button>
-        </div>
-      </div>
+       <div className="relative w-full lg:w-[90rem] mt-2 lg:ml-[8rem]">
+       
+       <div className="relative lg:h-96 overflow-hidden rounded-lg md:h-96 h-60">
+         {restaurants.map((item) => (
+           <div key={item.id} className={`${ item.id === activeItem ? "duration-700 ease-in-out" : "hidden"}`}
+             data-carousel-item={item.id === activeItem ? "active" : ""} >
+             <img src={item.image}
+               className="absolute block h-full  w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+               alt={`Carousel Item ${item.id + 1}`}/>
+           </div>
+         ))}
+       </div>
+
+       <button type="button"
+         className="absolute lg:mt-40 mt-20 top-0 start-0 z-30 flex items-center text-4xl justify-center px-4 cursor-pointer group font-bold"
+         onClick={handlePrevClick}> &lt; </button>
+       <button type="button"
+         className="absolute lg:mt-40 mt-20 top-0 end-0 z-30 flex items-center text-4xl justify-center px-4 cursor-pointer group font-bold"
+         onClick={handleNextClick}> &gt; </button>
+     </div>
     </>
   );
 };

@@ -22,16 +22,19 @@ const appRouting = createBrowserRouter([
     children: [
       {
         path: "/",
+        element: <Restuerenttems />
+      },
+
+      {
+        path: "/signin",
         element: <SignIn />
       },
+      
       {
         path: "/login",
         element: <LogIn />
       },
-      {
-        path: "/restuarent",
-        element: <Restuerenttems />
-      },
+    
       {
         path: "/about",
         element: <About />

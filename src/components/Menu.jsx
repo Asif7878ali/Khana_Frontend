@@ -4,13 +4,26 @@ import { notification } from "antd";
 
 const Menu = ({ foodItems }) => {
   const { name, price, image } = foodItems;
+  const token = sessionStorage.getItem('Token')
+ 
+  const isLogin = JSON.parse(token);
   const dispatch = useDispatch();
+         
   const handlecarddata = (foodItems) => {
-    dispatch(additems(foodItems));
-    notification.success({
-      message: "Add Succesfully",
-    });
+    if (isLogin) {
+      dispatch(additems(foodItems));
+      notification.success({
+        message: "Added Successfully",
+      });
+    } else {
+      notification.error({
+        message: "Please Log in Your Account",
+      });
+    }
   };
+  
+  
+  
   return (
     <>
       <div className="lg:ml-5 mt-3 mb-3 max-w-sm h-80 lg:w-60 rounded overflow-hidden shadow-lg">

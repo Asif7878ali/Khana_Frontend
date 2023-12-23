@@ -1,10 +1,9 @@
 const About = () => {
-  const token = localStorage.getItem("Token");
-  const isLogin = JSON.parse(token);
+ 
 
   return (
     <>
-      {isLogin ? (
+    
         <div className="flex flex-col bg-yellow-200 items-center justify-start font-sans min-h-96 lg:pt-10 lg:pb-20 lg:bg-hero lg:bg-cover">
           <div>
             <p className="p-3 pt-12 text-3xl font-bold">Khana-Khazana</p>
@@ -25,13 +24,7 @@ const About = () => {
            
           </div>
         </div>
-      ) : (
-        <div className="min-h-screen bg-yellow-400 flex items-center justify-center">
-          <div className="text-center">
-            <h1 className="text-3xl font-semibold mb-4">Please Login</h1>
-          </div>
-        </div>
-      )}
+    
     </>
   );
 };

@@ -64,9 +64,10 @@ const LogIn = () => {
             message: message,
           });
           dispatch(addLoginUsers(data));
-          localStorage.setItem("Token", JSON.stringify(token));
+          // localStorage.setItem("Token", JSON.stringify(token));
+          sessionStorage.setItem('Token', JSON.stringify(token))
 
-          navigate("/restuarent");
+          navigate("/");
         } catch (error) {
           console.warn("Error during fetch:", error);
           const {message} = error.response.data
@@ -170,7 +171,7 @@ const LogIn = () => {
                 </button>
                 <p className="text-sm  text-black">
                   Don’t have an account yet?
-                  <Link to="/">
+                  <Link to="/signin">
                     <span className="font-medium text-primary-600 hover:underline text-black cursor-pointer">
                       SignIn
                     </span>
