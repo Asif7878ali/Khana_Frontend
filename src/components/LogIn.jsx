@@ -53,7 +53,7 @@ const LogIn = () => {
         //"https://gifted-cap-cod.cyclic.app/loginInfo"
         //"http://localhost:5000/loginInfo"
         try {
-          const userLoginInfo = "https://gifted-cap-cod.cyclic.app/loginInfo";
+          const userLoginInfo = "http://localhost:5000/loginInfo";
           const responce = await axios.post(userLoginInfo, values);
           console.log("Node Responce", responce.data);
           const { token, data, message } = responce.data;
